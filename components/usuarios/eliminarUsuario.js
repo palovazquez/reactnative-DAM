@@ -1,11 +1,8 @@
-/* eslint-disable prettier/prettier */
-import React, { useContext, useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Button, Icon, List, ListItem } from '@ui-kitten/components';
-import { UserContext } from '../../context/userContext';
-import { useNavigation } from '@react-navigation/native';
-import { screens } from '../../App';
 import Modal from 'react-native-modal';
+import React, { useContext, useState } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { UserContext } from '../../context/userContext';
+import { Button, Icon, List, ListItem } from '@ui-kitten/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,9 +10,6 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-  },
-  buttons: {
-    flexDirection: 'row',
   },
   button: {
     marginHorizontal: 2,
@@ -103,7 +97,7 @@ const EliminarUsuario = () => {
   const renderItem = ({ item, index }) => (
     <ListItem
       title={`${item.usuario}`}
-      description={`${item.correo}  -- ${item.id}`}
+      description={`${item.correo}`}
       accessoryLeft={renderItemIcon}
       accessoryRight={renderItemAccessory.bind(this, item.id, index)}
     />

@@ -1,11 +1,11 @@
+import BottomSheetModal from './bottomSheetModal';
 import React, { useContext, useState } from 'react';
-import { Button, Card, Icon, Text } from '@ui-kitten/components';
-import { StyleSheet, View, FlatList, TextInput } from 'react-native';
 import { StoreContext } from '../context/storeContext';
 import { ColorPicker } from 'react-native-color-picker';
-import useOrientation, { SCREEN } from '../hooks/useOrientation';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import BottomSheetModal from './bottomSheetModal';
+import { Button, Card, Icon, Text } from '@ui-kitten/components';
+import useOrientation, { SCREEN } from '../hooks/useOrientation';
+import { StyleSheet, View, FlatList, TextInput } from 'react-native';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -20,18 +20,6 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: '#00E884',
     borderColor: 'transparent',
-  },
-  modalView: {
-    backgroundColor: 'lightgrey',
-    paddingVertical: 10,
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
-    height: '50%',
-    padding: 10,
-  },
-  modalContainer: {
-    flex: 1,
-    flexDirection: 'column-reverse',
   },
   textInput: {
     height: 40,

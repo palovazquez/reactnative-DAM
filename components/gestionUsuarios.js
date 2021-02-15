@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { Text, View, StyleSheet, ImageBackground } from 'react-native';
-import { Button } from '@ui-kitten/components';
+import React from 'react';
 import { screens } from '../App';
-import { useNavigation } from '@react-navigation/native';
 import { waveLong } from '../images';
+import { Button } from '@ui-kitten/components';
+import { useNavigation } from '@react-navigation/native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {

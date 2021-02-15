@@ -1,9 +1,8 @@
-/* eslint-disable prettier/prettier */
+import Modal from 'react-native-modal';
 import React, { useContext, useState } from 'react';
+import { UserContext } from '../../context/userContext';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { Button, Icon, List, ListItem } from '@ui-kitten/components';
-import { UserContext } from '../../context/userContext';
-import Modal from 'react-native-modal';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,9 +10,6 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-  },
-  buttons: {
-    flexDirection: 'row',
   },
   button: {
     marginHorizontal: 2,
@@ -92,43 +88,42 @@ const styles = StyleSheet.create({
 const ModificarUsuario = () => {
   const { usuarios, setUsuarios } = useContext(UserContext);
   const [modalVisible, setModalVisible] = useState(false);
-  const [idAModificar, setidAModificar] = useState('');
   const [nombreUsuario, setNombreUsuario] = useState('');
   const [emailUsuario, setEmailUsuario] = useState('');
   const [contraseñaUsuario, setContraseñaUsuario] = useState('');
   const [edadUsuario, setEdadUsuario] = useState('');
+  const [indexUsuario, setIndexUsuario] = useState('');
 
   const modificarUsuario = () => {
-    var newUsuarios = usuarios.filter((usuario) => usuario.id !== idAModificar);
-    newUsuarios = [
-      ...newUsuarios,
-      {
-        usuario: nombreUsuario,
-        correo: emailUsuario,
-        contraseña: contraseñaUsuario,
-        edad: Number(edadUsuario),
-        id: idAModificar,
-      },
-    ];
+    var newUsuarios = [...usuarios];
+    var usuario = {
+      ...newUsuarios[indexUsuario],
+      usuario: nombreUsuario,
+      correo: emailUsuario,
+      contraseña: contraseñaUsuario,
+      edad: Number(edadUsuario),
+    };
+    newUsuarios[indexUsuario] = usuario;
+
     setUsuarios(newUsuarios);
     setNombreUsuario('');
     setEmailUsuario('');
     setContraseñaUsuario('');
     setEdadUsuario('');
-    setidAModificar('');
+    setIndexUsuario('');
   };
 
-  const renderItemAccessory = (item) => (
+  const renderItemAccessory = (item, index) => (
     <Button
       style={styles.button}
       size="tiny"
       status="danger"
       onPress={() => {
-        setidAModificar(item.id);
         setNombreUsuario(item.usuario);
         setEmailUsuario(item.correo);
         setContraseñaUsuario(item.contraseña);
         setEdadUsuario(item.edad);
+        setIndexUsuario(index);
         setModalVisible(true);
       }}>
       MODIFICAR
@@ -138,9 +133,9 @@ const ModificarUsuario = () => {
   const renderItem = ({ item, index }) => (
     <ListItem
       title={`${item.usuario}`}
-      description={`${item.correo}  -- ${item.id} -> ${item.articulos[0]} -> ${item.articulos[1]}`}
+      description={`${item.correo}`}
       accessoryLeft={renderItemIcon}
-      accessoryRight={renderItemAccessory.bind(this, item)}
+      accessoryRight={renderItemAccessory.bind(this, item, index)}
     />
   );
 
@@ -152,7 +147,7 @@ const ModificarUsuario = () => {
         hasBackdrop={true}
         backdropOpacity={0.5}
         onBackdropPress={() => {
-          setidAModificar('');
+          setIndexUsuario('');
           setModalVisible(false);
         }}
         animationIn={'slideInUp'}
@@ -198,7 +193,7 @@ const ModificarUsuario = () => {
               <Button
                 style={styles.btnCancelar}
                 onPress={() => {
-                  setidAModificar('');
+                  setIndexUsuario('');
                   setModalVisible(false);
                 }}>
                 Cancelar

@@ -1,7 +1,7 @@
-import { CheckBox, Divider, List, Text } from '@ui-kitten/components';
 import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StoreContext } from '../context/storeContext';
+import { CheckBox, Divider, List, Text } from '@ui-kitten/components';
 
 const styles = StyleSheet.create({
   chip: { width: 30, height: 10, borderRadius: 10 },

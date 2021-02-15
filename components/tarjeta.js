@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Card, Text } from '@ui-kitten/components';
 import { StyleSheet, View } from 'react-native';
+import { Button, Card, Text } from '@ui-kitten/components';
 
 const styles = StyleSheet.create({
   tituloContainer: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   titulo: {
     fontSize: 20,
-    fontWeight: 'bold', // 100 - 200 - 300 - 400
+    fontWeight: 'bold',
   },
   precio: {
     fontSize: 15,

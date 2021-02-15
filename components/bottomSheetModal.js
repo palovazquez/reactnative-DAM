@@ -1,5 +1,5 @@
-import { Icon, Text } from '@ui-kitten/components';
 import React from 'react';
+import { Icon, Text } from '@ui-kitten/components';
 import { StyleSheet, View, Modal, Pressable } from 'react-native';
 
 const styles = StyleSheet.create({

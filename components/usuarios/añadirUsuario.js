@@ -1,8 +1,7 @@
-/* eslint-disable prettier/prettier */
-import React, { useContext, useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { TextInput } from 'react-native';
 import { Button } from '@ui-kitten/components';
-import { FlatList, TextInput } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import React, { useContext, useState } from 'react';
 import { UserContext } from '../../context/userContext';
 import { useNavigation } from '@react-navigation/native';
 
@@ -17,14 +16,6 @@ const styles = StyleSheet.create({
     flex: 12,
     alignItems: 'stretch',
     justifyContent: 'center',
-  },
-  button: {
-    margin: 2,
-    marginBottom: 10,
-    width: 200,
-  },
-  textField: {
-    fontSize: 15,
   },
   textInput: {
     height: 40,
@@ -58,8 +49,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#00E884',
     borderColor: 'transparent',
   },
-  card: { flex: 1, margin: 5 },
-  cardText: { textAlign: 'center', fontWeight: 'bold' },
 });
 
 const AñadirUsuario = () => {
@@ -136,13 +125,6 @@ const AñadirUsuario = () => {
           GUARDAR
         </Button>
       </View>
-      {/* {usuarios.forEach((usuario) => {
-        return (
-          <Card style={{ ...styles.card }} key={usuario.edad + Math.random()}>
-            <Text style={styles.cardText}>{usuario.usuario}</Text>
-          </Card>
-        );
-      })} */}
     </View>
   );
 };

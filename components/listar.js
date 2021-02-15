@@ -1,16 +1,22 @@
+import Tarjeta from './tarjeta';
+import { screens } from '../App';
+import { CHECKIMAGE } from '../images';
+import Modal from 'react-native-modal';
+import { existeComprador } from './detalle';
+import {
+  Text,
+  Button,
+  Icon,
+  List,
+  ListItem,
+  Card,
+  Modal as SecondModal,
+} from '@ui-kitten/components';
 import React, { useContext, useState } from 'react';
+import { UserContext } from '../context/userContext';
+import { StoreContext } from '../context/storeContext';
 import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet, ScrollView, Image } from 'react-native';
-import { Text } from '@ui-kitten/components';
-import { screens } from '../App';
-import Tarjeta from './tarjeta';
-import { StoreContext } from '../context/storeContext';
-import { Button, Icon, List, ListItem, Card } from '@ui-kitten/components';
-import Modal from 'react-native-modal';
-import { UserContext } from '../context/userContext';
-import { Modal as SecondModal } from '@ui-kitten/components';
-import { CHECKIMAGE } from '../images';
-import { existeComprador } from './detalle';
 
 const styles = StyleSheet.create({
   container: {
