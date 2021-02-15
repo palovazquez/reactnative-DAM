@@ -1,8 +1,16 @@
 import Modal from 'react-native-modal';
+import { CHECKIMAGE } from '../../images';
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../context/userContext';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
-import { Button, Icon, List, ListItem } from '@ui-kitten/components';
+import {
+  Button,
+  Icon,
+  List,
+  ListItem,
+  Card,
+  Modal as SecondModal,
+} from '@ui-kitten/components';
+import { Text, View, StyleSheet, TextInput, Image } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -83,6 +91,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 15,
   },
+  secondModal: {
+    marginHorizontal: 0,
+  },
+  txtSecondModal: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 15,
+  },
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  card: {
+    marginHorizontal: 60,
+    borderRadius: 60,
+  },
+  btnOk: {
+    textAlign: 'center',
+    marginTop: 5,
+    borderRadius: 30,
+    backgroundColor: '#00E884',
+    borderColor: 'white',
+    width: 70,
+    height: 40,
+    alignSelf: 'center',
+  },
+  image: { height: 80, width: 80, alignSelf: 'center', marginBottom: 20 },
 });
 
 const ModificarUsuario = () => {
@@ -93,6 +127,9 @@ const ModificarUsuario = () => {
   const [contraseñaUsuario, setContraseñaUsuario] = useState('');
   const [edadUsuario, setEdadUsuario] = useState('');
   const [indexUsuario, setIndexUsuario] = useState('');
+  const [confirmationModalVisible, setConfirmationModalVisible] = useState(
+    false,
+  );
 
   const modificarUsuario = () => {
     var newUsuarios = [...usuarios];
@@ -111,6 +148,7 @@ const ModificarUsuario = () => {
     setContraseñaUsuario('');
     setEdadUsuario('');
     setIndexUsuario('');
+    setConfirmationModalVisible(true);
   };
 
   const renderItemAccessory = (item, index) => (
@@ -211,6 +249,26 @@ const ModificarUsuario = () => {
         </View>
       </Modal>
       <List style={styles.list} data={usuarios} renderItem={renderItem} />
+      <SecondModal
+        style={styles.secondModal}
+        visible={confirmationModalVisible}
+        backdropStyle={styles.backdrop}
+        onBackdropPress={() => setConfirmationModalVisible(false)}>
+        <Card style={styles.card} disabled={true}>
+          <Image style={styles.image} source={CHECKIMAGE} />
+          <Text style={styles.txtSecondModal}>
+            El usuario ha sido registrado con éxito
+          </Text>
+          <Button
+            style={styles.btnOk}
+            size="medium"
+            onPress={() => {
+              setConfirmationModalVisible(false);
+            }}>
+            Ok
+          </Button>
+        </Card>
+      </SecondModal>
     </View>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Icon, Text } from '@ui-kitten/components';
-import { StyleSheet, View, Modal, Pressable } from 'react-native';
+import { Icon } from '@ui-kitten/components';
+import { StyleSheet, View, Modal, Pressable, Text } from 'react-native';
 
 const styles = StyleSheet.create({
   modalView: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 24,
     height: '50%',
     padding: 24,
-    borderColor: 'grey',
+    borderColor: 'transparent',
     borderTopWidth: 1,
     borderRightWidth: 1,
     borderLeftWidth: 1,
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: { width: 32, height: 32 },
+  title: { fontSize: 20, color: '#000000', marginBottom: 30 },
 });
 
 const BottomSheetModal = ({ title, visible, onClosePressed, children }) => {
@@ -33,7 +34,7 @@ const BottomSheetModal = ({ title, visible, onClosePressed, children }) => {
       <View style={styles.modalContainer}>
         <View style={styles.modalView}>
           <View style={styles.modalTileView}>
-            <Text category="h2">{title}</Text>
+            <Text style={styles.title}>{title}</Text>
             {!!onClosePressed && ( //Hacemos !!onClosePressed para mostrar el boton solo si le pasamos un onClose
               <Pressable onPress={() => onClosePressed()}>
                 <Icon style={styles.icon} fill="#000000" name="close" />

@@ -1,5 +1,6 @@
-import { TextInput } from 'react-native';
-import { Button } from '@ui-kitten/components';
+import { CHECKIMAGE, waveLarge } from '../../images';
+import { TextInput, Image, Text, ImageBackground } from 'react-native';
+import { Button, Card, Modal as SecondModal } from '@ui-kitten/components';
 import { View, StyleSheet } from 'react-native';
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../context/userContext';
@@ -49,6 +50,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#00E884',
     borderColor: 'transparent',
   },
+  secondModal: {
+    marginHorizontal: 0,
+  },
+  txtSecondModal: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 15,
+  },
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  card: {
+    marginHorizontal: 60,
+    borderRadius: 60,
+  },
+  btnOk: {
+    textAlign: 'center',
+    marginTop: 5,
+    borderRadius: 30,
+    backgroundColor: '#00E884',
+    borderColor: 'white',
+    width: 70,
+    height: 40,
+    alignSelf: 'center',
+  },
+  image: { height: 80, width: 80, alignSelf: 'center', marginBottom: 20 },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
 });
 
 const AñadirUsuario = () => {
@@ -57,6 +89,9 @@ const AñadirUsuario = () => {
   const [emailUsuario, setEmailUsuario] = useState('');
   const [contraseñaUsuario, setContraseñaUsuario] = useState('');
   const [edadUsuario, setEdadUsuario] = useState('');
+  const [confirmationModalVisible, setConfirmationModalVisible] = useState(
+    false,
+  );
   const navigator = useNavigation();
 
   const guardarUsuario = () => {
@@ -75,57 +110,80 @@ const AñadirUsuario = () => {
     setEmailUsuario('');
     setContraseñaUsuario('');
     setEdadUsuario('');
+    setConfirmationModalVisible(true);
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.subContainer}>
-        <TextInput
-          placeholder="Usuario"
-          style={styles.textInput}
-          value={nombreUsuario}
-          onChangeText={(nuevoTexto) => {
-            setNombreUsuario(nuevoTexto);
-          }}
-        />
-        <TextInput
-          placeholder="Correo electrónico"
-          style={styles.textInput}
-          value={emailUsuario}
-          onChangeText={(nuevoTexto) => {
-            setEmailUsuario(nuevoTexto);
-          }}
-        />
-        <TextInput
-          placeholder="Contraseña"
-          style={styles.textInput}
-          value={contraseñaUsuario}
-          onChangeText={(nuevoTexto) => {
-            setContraseñaUsuario(nuevoTexto);
-          }}
-        />
-        <TextInput
-          placeholder="Edad"
-          style={styles.textInput}
-          value={String(edadUsuario)}
-          onChangeText={(nuevoTexto) => {
-            setEdadUsuario(String(nuevoTexto));
-          }}
-        />
+    <ImageBackground source={waveLarge} style={styles.backgroundImage}>
+      <View style={styles.container}>
+        <View style={styles.subContainer}>
+          <TextInput
+            placeholder="Usuario"
+            style={styles.textInput}
+            value={nombreUsuario}
+            onChangeText={(nuevoTexto) => {
+              setNombreUsuario(nuevoTexto);
+            }}
+          />
+          <TextInput
+            placeholder="Correo electrónico"
+            style={styles.textInput}
+            value={emailUsuario}
+            onChangeText={(nuevoTexto) => {
+              setEmailUsuario(nuevoTexto);
+            }}
+          />
+          <TextInput
+            placeholder="Contraseña"
+            style={styles.textInput}
+            value={contraseñaUsuario}
+            onChangeText={(nuevoTexto) => {
+              setContraseñaUsuario(nuevoTexto);
+            }}
+          />
+          <TextInput
+            placeholder="Edad"
+            style={styles.textInput}
+            value={String(edadUsuario)}
+            onChangeText={(nuevoTexto) => {
+              setEdadUsuario(String(nuevoTexto));
+            }}
+          />
+        </View>
+        <View style={styles.buttons}>
+          <Button
+            style={styles.btnVolver}
+            onPress={() => {
+              navigator.goBack();
+            }}>
+            VOLVER
+          </Button>
+          <Button style={styles.btnGuardar} onPress={() => guardarUsuario()}>
+            GUARDAR
+          </Button>
+        </View>
+        <SecondModal
+          style={styles.secondModal}
+          visible={confirmationModalVisible}
+          backdropStyle={styles.backdrop}
+          onBackdropPress={() => setConfirmationModalVisible(false)}>
+          <Card style={styles.card} disabled={true}>
+            <Image style={styles.image} source={CHECKIMAGE} />
+            <Text style={styles.txtSecondModal}>
+              El usuario ha sido modificado con éxito
+            </Text>
+            <Button
+              style={styles.btnOk}
+              size="medium"
+              onPress={() => {
+                setConfirmationModalVisible(false);
+              }}>
+              Ok
+            </Button>
+          </Card>
+        </SecondModal>
       </View>
-      <View style={styles.buttons}>
-        <Button
-          style={styles.btnVolver}
-          onPress={() => {
-            navigator.goBack();
-          }}>
-          VOLVER
-        </Button>
-        <Button style={styles.btnGuardar} onPress={() => guardarUsuario()}>
-          GUARDAR
-        </Button>
-      </View>
-    </View>
+    </ImageBackground>
   );
 };
 

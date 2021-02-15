@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginRight: 5,
   },
+  textComprador: { fontSize: 20, color: '#000000', marginBottom: 30 },
 });
 
 export const existeComprador = (idProducto, usuarios) => {
@@ -178,7 +179,7 @@ const Detalle = ({ route: { params }, ...props }) => {
 
       {existeComprador(producto.id, usuarios) ? (
         <>
-          <Text>
+          <Text style={styles.textComprador}>
             Comprador: {existeComprador(producto.id, usuarios).usuario}
           </Text>
         </>

@@ -2,7 +2,7 @@ import BottomSheetModal from './bottomSheetModal';
 import React, { useContext, useState } from 'react';
 import { StoreContext } from '../context/storeContext';
 import { ColorPicker } from 'react-native-color-picker';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import { Button, Card, Icon, Text } from '@ui-kitten/components';
 import useOrientation, { SCREEN } from '../hooks/useOrientation';
 import { StyleSheet, View, FlatList, TextInput } from 'react-native';
@@ -23,17 +23,29 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: 'blue',
+    borderColor: 'transparent',
     borderWidth: 2,
     borderRadius: 20,
     paddingHorizontal: 10,
     backgroundColor: 'lightgrey',
     marginVertical: 10,
   },
-  modalButton: {
-    marginVertical: 10,
-  },
   cardText: { textAlign: 'center', fontWeight: 'bold' },
+  greenButton: {
+    margin: 2,
+    marginVertical: 30,
+    marginBottom: 10,
+    borderRadius: 20,
+    backgroundColor: '#00D984',
+    borderColor: 'transparent',
+  },
+  redButton: {
+    margin: 2,
+    marginBottom: 10,
+    borderRadius: 20,
+    backgroundColor: '#F66052',
+    borderColor: 'transparent',
+  },
 });
 
 export const ListaCategorias = () => {
@@ -63,7 +75,7 @@ export const ListaCategorias = () => {
       <BottomSheetModal
         visible={modalVisible}
         onClosePressed={() => setModalVisible(false)}
-        title={primaraPantalla ? 'Crear una categoria' : 'Elegir Color'}>
+        title={primaraPantalla ? 'Crear una categoria' : 'Elija un color'}>
         <>
           {primaraPantalla && (
             <PrimeraPantalla
@@ -115,7 +127,7 @@ const PrimeraPantalla = ({
   return (
     <>
       <TextInput
-        placeholder="Nombre de Categoria"
+        placeholder="Nombre categoría"
         style={styles.textInput}
         value={nombreNuevaCategoria}
         onChangeText={(nuevoTexto) => {
@@ -124,14 +136,14 @@ const PrimeraPantalla = ({
       />
       <TouchableOpacity onPress={() => setPrimeraPantalla(false)}>
         <TextInput
-          placeholder="Color de Categoria"
+          placeholder="Color"
           editable={false}
           style={styles.textInput}
           value={colorNuevaCategoria}
         />
       </TouchableOpacity>
-      <Button style={styles.modalButton} onPress={() => crearCategoria()}>
-        Crear Categoria
+      <Button style={styles.greenButton} onPress={() => crearCategoria()}>
+        CREAR CATEGORÍA
       </Button>
     </>
   );
@@ -148,9 +160,7 @@ const SegundaPantalla = ({ setColorNuevaCategoria, setPrimeraPantalla }) => {
         hideSliders={true}
         style={styles.container}
       />
-      <Button
-        style={styles.modalButton}
-        onPress={() => setPrimeraPantalla(true)}>
+      <Button style={styles.redButton} onPress={() => setPrimeraPantalla(true)}>
         Volver
       </Button>
     </>

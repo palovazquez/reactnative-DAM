@@ -1,6 +1,6 @@
 import React from 'react';
 import { screens } from '../App';
-import { waveLong } from '../images';
+import { waveLarge } from '../images';
 import { Button } from '@ui-kitten/components';
 import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet, ImageBackground } from 'react-native';
@@ -31,7 +31,7 @@ const GestionUsuarios = () => {
   const navigator = useNavigation();
 
   return (
-    <ImageBackground source={waveLong} style={styles.backgroundImage}>
+    <ImageBackground source={waveLarge} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Button
           style={styles.greenButton}

@@ -137,7 +137,7 @@ const Listar = ({ ...props }) => {
   const renderItem = ({ item, index }) => (
     <ListItem
       title={`${item.usuario}`}
-      description={`${item.correo}  -- ${item.id}`}
+      description={`${item.correo}`}
       accessoryLeft={renderItemIcon}
       accessoryRight={renderItemAccessory.bind(this, index)}
     />

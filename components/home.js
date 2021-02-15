@@ -2,7 +2,7 @@ import React from 'react';
 import { screens } from '../App';
 import { Button } from '@ui-kitten/components';
 import { useNavigation } from '@react-navigation/native';
-import { newWave } from '../images';
+import { newWave, waveImage, waveLarge, waveLong } from '../images';
 import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    marginEnd: 0,
   },
   greenButton: {
     margin: 2,
@@ -58,7 +58,7 @@ export const Home = () => {
   const navigator = useNavigation();
 
   return (
-    <ImageBackground source={newWave} style={styles.backgroundImage}>
+    <ImageBackground source={waveLarge} style={styles.backgroundImage}>
       <Text style={styles.homeTitle}>Bienvenidos!</Text>
       <View style={styles.container}>
         <Button
