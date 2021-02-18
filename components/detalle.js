@@ -180,7 +180,7 @@ const Detalle = ({ route: { params }, ...props }) => {
       {existeComprador(producto.id, usuarios) ? (
         <>
           <Text style={styles.textComprador}>
-            Comprador: {existeComprador(producto.id, usuarios).usuario}
+            Comprado por: {existeComprador(producto.id, usuarios).usuario}
           </Text>
         </>
       ) : (

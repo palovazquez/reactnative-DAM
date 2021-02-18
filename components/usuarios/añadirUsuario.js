@@ -1,10 +1,10 @@
-import { CHECKIMAGE, waveLarge } from '../../images';
-import { TextInput, Image, Text, ImageBackground } from 'react-native';
-import { Button, Card, Modal as SecondModal } from '@ui-kitten/components';
 import { View, StyleSheet } from 'react-native';
 import React, { useContext, useState } from 'react';
+import { CHECKIMAGE, waveLarge } from '../../images';
 import { UserContext } from '../../context/userContext';
 import { useNavigation } from '@react-navigation/native';
+import { TextInput, Image, Text, ImageBackground } from 'react-native';
+import { Button, Card, Modal as SecondModal } from '@ui-kitten/components';
 
 const styles = StyleSheet.create({
   container: {
@@ -170,7 +170,7 @@ const AñadirUsuario = () => {
           <Card style={styles.card} disabled={true}>
             <Image style={styles.image} source={CHECKIMAGE} />
             <Text style={styles.txtSecondModal}>
-              El usuario ha sido modificado con éxito
+              El usuario ha sido registrado con éxito
             </Text>
             <Button
               style={styles.btnOk}

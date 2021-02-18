@@ -257,7 +257,7 @@ const ModificarUsuario = () => {
         <Card style={styles.card} disabled={true}>
           <Image style={styles.image} source={CHECKIMAGE} />
           <Text style={styles.txtSecondModal}>
-            El usuario ha sido registrado con éxito
+            El usuario ha sido modificado con éxito
           </Text>
           <Button
             style={styles.btnOk}
